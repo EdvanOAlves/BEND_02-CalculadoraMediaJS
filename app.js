@@ -68,8 +68,40 @@ const ERROR_MESSAGE = 'ERRO: Nota informada precisa estar entre 0 a 10'
 entradaDeDados.question('Digite o nome do aluno: ', function (nome) {
     let nomeAluno = String(nome).toUpperCase();
 
+    entradaDeDados.question('Digite a nota 1: ', function (valor1) {
+        let nota1 = valor1;
+        entradaDeDados.question('Digite a nota 2: ', function (valor2) {
+            let nota2 = valor2;
+            entradaDeDados.question('Digite a nota 3: ', function (valor3) {
+                let nota3 = valor3;
+                entradaDeDados.question('Digite a nota 4:', function (valor4) {
+                    let nota4 = valor4;
 
+                    if (nomeAluno == '' || nota1 == '' || nota2 == '' || nota3 == '' || nota4 == '') {
+                        console.log('ERRO: Campos vazios.')
+                    }
+                    else if (isNaN(nota1) || isNaN(nota2) || isNaN(nota3) || isNaN(nota4)) {
+                        console.log('ERRO: Campos com input inválido')
+                    }
+                    else if (Number(nota1) < 0 || Number(nota2) < 0 || Number(nota3) < 0 || Number(nota4) < 0 || (Number(nota1) > 10 || Number(nota2) > 10 || Number(nota3) > 10 || Number(nota4) > 10)) {
+                        console.log('ERRO: Os valores informados precisam ser entre 0 até 10.')
+                    } else {
+                        let media = mediaEscolar.calcMedia(nota1, nota2, nota3, nota4);
 
+                        let statusAluno = mediaEscolar.calcStatusAluno(media);
+                        console.log(`A média do aluno ${nomeAluno} é de ${media}, foi ${statusAluno}`);
+                        entradaDeDados.close;
+
+                    }
+                })
+
+            })
+
+        })
+    }
+    )
+
+    /*
     if (nomeAluno == '') {
         console.log('ERRO: Campo "nome" não pode ser vazio!')
         entradaDeDados.close()
@@ -80,11 +112,11 @@ entradaDeDados.question('Digite o nome do aluno: ', function (nome) {
             if (valor1 == '' || Number(valor1) > 10 || Number(valor1) < 0) {
                 console.log(ERROR_MESSAGE);
                 entradaDeDados.close();
-            }else {
+            } else {
                 // Input nota 2
                 entradaDeDados.question('Digite a nota 2: ', function (valor2) {
                     let nota2 = valor2;
-                    if (nota2 == ''  || Number(nota2) > 10 || Number(nota2) < 0) {
+                    if (nota2 == '' || Number(nota2) > 10 || Number(nota2) < 0) {
                         console.log(ERROR_MESSAGE);
                         entradaDeDados.close;
                     } else {
@@ -103,7 +135,7 @@ entradaDeDados.question('Digite o nome do aluno: ', function (nome) {
                                         entradaDeDados.close;
                                     } else {
                                         // Calculo de média
-                                        let media =  mediaEscolar.calcMedia(nota1, nota2, nota3, nota4);
+                                        let media = mediaEscolar.calcMedia(nota1, nota2, nota3, nota4);
 
                                         let statusAluno = mediaEscolar.calcStatusAluno(media);
                                         console.log(`A média do aluno ${nomeAluno} é de ${media}, foi ${statusAluno}`);
@@ -117,4 +149,5 @@ entradaDeDados.question('Digite o nome do aluno: ', function (nome) {
             }
         })// fecha nota1
     }
+    */
 })// fecha nome
